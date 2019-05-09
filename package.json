@@ -1,26 +1,14 @@
 {
-  "name": "chromecast-player",
+  "name": "chromecast-player-reloaded",
   "version": "0.2.3",
-  "description": "simple chromecast player",
+  "description": "Node chromecast player reloaded",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Simon Kusterer",
-  "license": "MIT",
-  "dependencies": {
-    "castv2-client": "^1.1.0",
-    "chromecast-scanner": "^0.5.0",
-    "debug": "^2.1.1",
-    "mutate.js": "^0.2.0",
-    "promiscuous": "^0.6.0",
-    "time-line": "^1.0.1",
-    "ware": "^1.2.0",
-    "xtend": "^4.0.0"
-  },
   "repository": {
     "type": "git",
-    "url": "git@github.com:xat/chromecast-player.git"
+    "url": "https://github.com/Rafostar/chromecast-player-reloaded"
   },
   "keywords": [
     "chromecast",
@@ -28,8 +16,17 @@
     "player",
     "video"
   ],
-  "bugs": {
-    "url": "https://github.com/xat/chromecast-player/issues"
-  },
-  "homepage": "https://github.com/xat/chromecast-player"
+  "author": "Rafostar",
+  "license": "MIT",
+  "dependencies": {
+    "castv2": "0.1.8",
+    "castv2-client": "^1.2.0",
+    "multicast-scanner": "^2.0.0",
+    "debug": "^4.1.1",
+    "mutate.js": "^0.2.0",
+    "promiscuous": "^0.7.2",
+    "time-line": "^1.0.1",
+    "ware": "^1.3.0",
+    "xtend": "^4.0.1"
+  }
 }
