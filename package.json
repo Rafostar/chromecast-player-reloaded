@@ -1,6 +1,6 @@
 {
   "name": "chromecast-player-reloaded",
-  "version": "0.2.3",
+  "version": "1.0.0",
   "description": "Node chromecast player reloaded",
   "main": "index.js",
   "scripts": {
@@ -21,8 +21,8 @@
   "dependencies": {
     "castv2": "0.1.8",
     "castv2-client": "^1.2.0",
-    "multicast-scanner": "^2.0.0",
     "debug": "^4.1.1",
+    "multicast-scanner": "^2.0.0",
     "mutate.js": "^0.2.0",
     "promiscuous": "^0.7.2",
     "time-line": "^1.0.1",

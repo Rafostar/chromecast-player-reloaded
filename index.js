@@ -1,11 +1,11 @@
 var Client = require('castv2-client').Client;
-var scanner = require('chromecast-scanner');
+var scanner = require('multicast-scanner');
 var ware = require('ware');
 var mutate = require('mutate.js');
 var inherits = require('util').inherits;
 var ee = require('events').EventEmitter;
 var extend = require('xtend');
-var debug = require('debug')('chromecast-player');
+var debug = require('debug')('chromecast-player-reloaded');
 var Promise = require('promiscuous');
 var api = require('./api');
 var noop = function() {};

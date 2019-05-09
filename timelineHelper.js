@@ -1,6 +1,6 @@
 var timeline = require('time-line');
 var inherits = require('util').inherits;
-var debug = require('debug')('chromecast-player:timelineHelper');
+var debug = require('debug')('chromecast-player-reloaded:timelineHelper');
 var EventEmitter = require('events').EventEmitter;
 
 var TimelineHelper = function(p) {
