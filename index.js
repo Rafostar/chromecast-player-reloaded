@@ -124,9 +124,9 @@ player.prototype._scan = function(ctx) {
         name: ctx.options.device ? ctx.options.device + '.local' : null,
         ttl: ctx.options.ttl,
       },
-      function(err, service) {
+      function(err, info) {
         if (err) return reject(err);
-        ctx.address = service.data;
+        ctx.address = info.ip;
         resolve(ctx);
       }
     );
