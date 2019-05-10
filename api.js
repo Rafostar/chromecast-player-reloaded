@@ -15,7 +15,7 @@ var Api = function(client, session) {
     'urn:x-cast:com.google.cast.media');
 
   var onMessage = function(response, broadcast) {
-    if (response.type !== 'MEDIA_STATUS' ||
+    if(response.type !== 'MEDIA_STATUS' ||
         !broadcast ||
         !response.status ||
         !response.status.length ||
@@ -63,7 +63,13 @@ Api.prototype.getStatus = function(cb) {
   var that = this;
   this.reqres.request({ type: 'GET_STATUS' },
     function(err, response) {
-      if(err) return callback(err);
+      if(err) return cb(err);
+      else if(!response ||
+          !response.status ||
+          !response.status.length ||
+          !response.status[0]) {
+        return cb(new Error('Get status failed'));
+      }
       var status = response.status[0];
       that.currentSession = status;
       cb(null, status);
@@ -100,7 +106,11 @@ Api.prototype.load = function(opts, cb) {
   this.reqres.request(options,
     function(err, response) {
       if(err) return cb(err);
-      if(response.type === 'LOAD_FAILED') {
+      else if(!response ||
+          !response.status ||
+          !response.status.length ||
+          !response.status[0] ||
+          response.type === 'LOAD_FAILED') {
         return cb(new Error('Load failed'));
       }
       cb(null, response.status[0]);
@@ -111,7 +121,8 @@ Api.prototype.load = function(opts, cb) {
 Api.prototype.getCurrentSession = function(cb) {
   if (this.currentSession) return cb(null, this.currentSession);
   this.getStatus(function(err, status) {
-    if (err) return cb(err);
+    if(err) return cb(err);
+    else if(!status) return cb(new Error('Get current session failed'));
     cb(null, status);
   });
 };
@@ -126,6 +137,12 @@ Api.prototype.sessionRequest = function(data, cb) {
     that.reqres.request(extend(data, { mediaSessionId: sessionId } ),
       function(err, response) {
         if(err) return cb(err);
+        else if(!response ||
+            !response.status ||
+            !response.status.length ||
+            !response.status[0]) {
+          return cb(new Error('Session request failed'));
+        }
         cb(null, response.status[0]);
       }
     );
