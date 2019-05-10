@@ -1,6 +1,6 @@
 {
   "name": "chromecast-player-reloaded",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Node chromecast player reloaded",
   "main": "index.js",
   "scripts": {
