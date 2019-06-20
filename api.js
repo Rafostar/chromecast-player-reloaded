@@ -6,7 +6,6 @@ var extend = require('xtend');
 var debug = require('debug')('chromecast-player-reloaded:api');
 var timelineHelper = require('./timelineHelper');
 var noop = function() {};
-var slice = Array.prototype.slice;
 
 var Api = function(client, session) {
   var that = this;
