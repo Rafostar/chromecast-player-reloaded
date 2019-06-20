@@ -174,6 +174,15 @@ Api.prototype.seek = function(currentTime, cb) {
   }, cb);
 };
 
+Api.prototype.editTracksInfo = function(tracksInfo, cb) {
+  if(!(tracksInfo instanceof Object))
+    return cb(new Error('Tracks info must be an object'));
+  this.sessionRequest({
+    type: 'EDIT_TRACKS_INFO',
+    ...tracksInfo
+  }, cb);
+};
+
 // volume can be a number between 0 and 1
 Api.prototype.setVolume = function(volume, cb) {
   this.platform.setVolume({ level: volume }, cb || noop);
