@@ -4,7 +4,6 @@ var ware = require('ware');
 var mutate = require('mutate.js');
 var inherits = require('util').inherits;
 var ee = require('events').EventEmitter;
-var extend = require('xtend');
 var debug = require('debug')('chromecast-player-reloaded');
 var Promise = require('promiscuous');
 var api = require('./api');
@@ -25,7 +24,7 @@ var apirize = function(fn, ctx) {
   return mutate(function(opts) {
     opts = opts || {};
     if (opts._opts) {
-        opts = extend(opts, opts._opts);
+        opts = { ...opts, ...opts._opts };
         delete opts._opts;
       }
       fn.call(ctx, opts);
@@ -72,7 +71,7 @@ var player = function() {
     ctx.shutdown = shutdown;
     ctx.inst = this;
     this.mw.run(ctx, function(err, ctx) {
-      ctx.options = extend(defaults, ctx.options);
+      ctx.options = { ...defaults, ...ctx.options };
       if (err) return ctx.options.cb(err);
       that._setStatus(ctx, 'loading plugins');
       that._scan(ctx)
@@ -95,7 +94,7 @@ var player = function() {
     ctx.inst = this;
     that._setStatus(ctx, 'loading plugins');
     this.mw.run(ctx, function(err, opts) {
-      ctx.options = extend(defaults, ctx.options);
+      ctx.options = { ...defaults, ...ctx.options };
       if (err) return ctx.options.cb(err);
       that._scan(ctx)
         .then(function(ctx) { return that._connect(ctx); })

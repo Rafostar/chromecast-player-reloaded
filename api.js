@@ -2,7 +2,6 @@ var castv2Cli = require('castv2-client');
 var inherits = require('util').inherits;
 var Application = castv2Cli.Application;
 var RequestResponseController = castv2Cli.RequestResponseController;
-var extend = require('xtend');
 var debug = require('debug')('chromecast-player-reloaded:api');
 var timelineHelper = require('./timelineHelper');
 var noop = function() {};
@@ -95,11 +94,13 @@ Api.prototype.load = function(opts, cb) {
     currentTime: opts.startTime,
     activeTrackIds: opts.activeTrackIds
   };
-  var media = extend({
-    contentId: opts.path,
-    contentType: opts.type,
-    streamType: opts.streamType
-  }, opts.media);
+  var media = {
+    ...{ contentId: opts.path,
+      contentType: opts.type,
+      streamType: opts.streamType
+    },
+    ...opts.media
+  };
   options.media = media;
 
   this.reqres.request(options,
@@ -133,7 +134,7 @@ Api.prototype.sessionRequest = function(data, cb) {
     if (err) return cb(err);
     if (!session) return cb(new Error('session not found'));
     var sessionId = session.mediaSessionId;
-    that.reqres.request(extend(data, { mediaSessionId: sessionId } ),
+    that.reqres.request({ ...data, ...{ mediaSessionId: sessionId }},
       function(err, response) {
         if(err) return cb(err);
         else if(!response ||
