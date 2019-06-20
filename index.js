@@ -5,7 +5,6 @@ var mutate = require('mutate.js');
 var inherits = require('util').inherits;
 var ee = require('events').EventEmitter;
 var debug = require('debug')('chromecast-player-reloaded');
-var Promise = require('promiscuous');
 var api = require('./api');
 var noop = function() {};
 
