@@ -8,7 +8,6 @@ var debug = require('debug')('chromecast-player-reloaded');
 var Promise = require('promiscuous');
 var api = require('./api');
 var noop = function() {};
-var slice = Array.prototype.slice;
 
 var defaults = {
   autoplay: true,
