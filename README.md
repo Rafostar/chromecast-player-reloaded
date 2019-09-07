@@ -18,6 +18,8 @@ const player = require('chromecast-player-reloaded')();
 const media = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/ED_1280.mp4';
 
 player.launch(media, (err, p) => {
+  if(err) return console.log(err.message);
+
   p.once('playing', () => {
     console.log('playback has started.');
   });
@@ -30,7 +32,7 @@ Attach to a currently playing session:
 const player = require('chromecast-player-reloaded')();
 
 player.attach((err, p) => {
-  p.pause();
+  if(!err) p.pause();
 });
 ```
 
