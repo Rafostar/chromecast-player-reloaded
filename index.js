@@ -10,7 +10,8 @@ var noop = function() {};
 
 var defaults = {
   autoplay: true,
-  ttl: 10000,
+  ttl: 22000,
+  interval: 4000,
   startTime: 0,
   streamType: 'BUFFERED',
   activeTrackIds: [],
@@ -118,8 +119,9 @@ player.prototype._scan = function(ctx) {
       return resolve(ctx);
     }
     scanner({
-        name: ctx.options.device ? ctx.options.device + '.local' : null,
+        name: (ctx.options.device) ? ctx.options.device + '.local' : null,
         ttl: ctx.options.ttl,
+        interval: ctx.options.interval
       },
       function(err, info) {
         if (err) return reject(err);
