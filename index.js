@@ -46,10 +46,12 @@ var shutdown = function() {
   if (this.client && !this.clientClosed) {
     this.client.close();
     this.clientClosed = true;
+    debug('closed cast client');
   }
   if (this.player && !this.playerClosed) {
     this.player.close();
     this.playerClosed = true;
+    debug('closed cast player');
   }
   this.inst._setStatus(this, 'closed');
   this.emit('closed');
